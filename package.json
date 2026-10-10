@@ -1,0 +1,32 @@
+{
+  "name": "miudo-formi",
+  "version": "2.1.0",
+  "private": true,
+  "description": "FORMI, CRM multiempresa da MI\u00daDO",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:init": "node scripts/init-db.js",
+    "test": "node --test test/*.test.js",
+    "production:check": "node scripts/check-production.js",
+    "db:cleanup": "node scripts/cleanup.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.0.0",
+    "nodemailer": "^10.0.16",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "supertest": "^7.0.0"
+  }
+}

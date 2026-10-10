@@ -1,0 +1,2 @@
+const pool=require('../db');
+(async()=>{try{await pool.query('DELETE FROM security_rate_limits WHERE expira_em < now()');await pool.query("DELETE FROM tokens_email WHERE expira_em < now()-interval '7 days'");await pool.query('DELETE FROM session WHERE expire < now()');console.log('Registros técnicos expirados removidos. Leads, contratos e auditoria preservados.');}finally{await pool.end();}})().catch(e=>{console.error(e.code||'Falha na limpeza');process.exitCode=1;});
