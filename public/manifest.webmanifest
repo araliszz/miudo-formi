@@ -1,15 +1,17 @@
+
 {
   "name": "MIÚDO — FORMI",
   "short_name": "FORMI",
   "lang": "pt-BR",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#faf7f1",
   "theme_color": "#2b1b14",
   "icons": [
     {
-      "src": "/formiga-miudo.png",
-      "sizes": "1280x1280",
+      "src": "/formiga-miudoofc.png",
+      "sizes": "any",
       "type": "image/png",
       "purpose": "any"
     }
