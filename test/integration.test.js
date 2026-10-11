@@ -1,7 +1,7 @@
 const {test}=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');const request=require('supertest');const {createApp}=require('../server');const {createTestPool}=require('./pool');
 test('cadastro, e-mail, sessão persistente, multiempresa, ADM, convites e isolamento',async t=>{
  const pool=await createTestPool();await pool.db.exec(fs.readFileSync(path.join(__dirname,'../schema.sql'),'utf8'));
- const env={NODE_ENV:'development',APP_URL:'http://localhost:3000',SESSION_SECRET:'test-secret-with-at-least-thirty-two-characters'};const sent=[];
+ await pool.db.exec(fs.readFileSync(path.join(__dirname,'../crm-schema.sql'),'utf8'));const env={NODE_ENV:'development',APP_URL:'http://localhost:3000',SESSION_SECRET:'test-secret-with-at-least-thirty-two-characters'};const sent=[];
  const app=createApp({pool,env,sendMail:async(email,kind,link)=>sent.push({email,kind,link})});
  const agents={};
  async function user(key,email){const agent=request.agent(app);agents[key]=agent;let s=(await agent.get('/api/session')).body;
