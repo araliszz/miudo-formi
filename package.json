@@ -1,8 +1,8 @@
 {
   "name": "miudo-formi",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "FORMI, CRM multiempresa da MI\u00daDO",
+  "description": "FORMI, CRM multiempresa da MIÚDO",
   "engines": {
     "node": ">=22"
   },
