@@ -4,14 +4,13 @@
   "short_name": "FORMI",
   "lang": "pt-BR",
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
   "background_color": "#faf7f1",
   "theme_color": "#2b1b14",
   "icons": [
     {
-      "src": "/formiga-miudoofc.png",
-      "sizes": "any",
+      "src": "/formiga-miudo.png?v=5",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
