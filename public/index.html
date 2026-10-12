@@ -174,7 +174,7 @@
 <label>Buscar<input id="lead-search" placeholder="Nome, telefone ou origem"></label>
 <label>Situação<select id="stage-filter">
 <option value="">Todas</option>
-<option value="nao_trabalhado">Não trabalhados</option>
+<option value="nao_trabalhado">Somente captados</option>
 <option value="trabalhado">Trabalhados</option>
 <option value="convertido">Convertidos</option>
 <option value="inativo">Inativos</option>
@@ -197,6 +197,11 @@
 <option value="complexo_irregular">Complexo irregular</option>
 </select></label>
 </div>
+<form id="contact-period" class="inline-form">
+<label>Captação de<input id="contact-start" name="inicio" type="date" min="1950-01-01" max="9999-12-31"></label>
+<label>Até<input id="contact-end" name="fim" type="date" min="1950-01-01" max="9999-12-31"></label>
+<button>Filtrar período</button><button type="button" id="contact-all">Todo o período</button>
+</form>
 <div id="lead-list"></div>
 </section>
 
@@ -264,7 +269,8 @@
 <label>Nome<input name="nome" maxlength="120" required></label>
 <label>Telefone com DDD<input name="telefone" type="tel" inputmode="numeric" pattern="[0-9]{10,15}" maxlength="15" data-phone required></label>
 <label>E-mail (opcional)<input name="email" type="email" maxlength="255"></label>
-<label>Origem<input name="origem" maxlength="80" value="Manual" required></label>
+<label>Data de captação<input name="data_captacao" type="date" required></label><label>Data de cadastro<input id="lead-created-at" type="text" readonly placeholder="Gerada automaticamente ao salvar"></label><label>Origem<input name="origem" maxlength="80" value="Manual" required></label>
+<label>Situação do lead<select name="situacao_lead"><option value="captado">Captado — ainda não classificado</option><option value="trabalhado">Trabalhado</option><option value="convertido">Convertido</option><option value="inativo">Inativo</option><option value="perdido">Perdido</option></select></label>
 <label>Qualificação<select name="qualificacao"><option>IQL</option><option>MQL</option><option>SQL</option><option>PQL</option></select></label>
 <label>Temperatura<select name="temperatura"><option value="frio">Frio</option><option value="morno">Morno</option><option value="quente">Quente</option></select></label>
 <label>Dificuldade<select name="dificuldade"><option value="simples">Simples</option><option value="complexa">Complexa</option><option value="complexo_irregular">Complexo irregular</option></select></label>
