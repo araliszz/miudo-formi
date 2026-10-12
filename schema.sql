@@ -95,3 +95,14 @@ CREATE TABLE IF NOT EXISTS auditoria (
 );
 CREATE INDEX IF NOT EXISTS idx_auditoria_empresa ON auditoria(empresa_id,criado_em);
 COMMIT;
+
+-- Data real de captação separada do registro automático no FORMI.
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS data_captacao DATE;
+UPDATE leads SET data_captacao=(criado_em AT TIME ZONE 'America/Sao_Paulo')::date WHERE data_captacao IS NULL;
+ALTER TABLE leads ALTER COLUMN data_captacao SET DEFAULT ((now() AT TIME ZONE 'America/Sao_Paulo')::date);
+ALTER TABLE leads ALTER COLUMN data_captacao SET NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_leads_empresa_captacao ON leads(empresa_id,data_captacao);
+
+-- Situação manual do contato: independente dos contratos e das automações.
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS situacao_lead VARCHAR(20) NOT NULL DEFAULT 'captado'
+ CHECK (situacao_lead IN ('captado','trabalhado','convertido','inativo','perdido'));
