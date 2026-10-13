@@ -106,3 +106,14 @@ CREATE INDEX IF NOT EXISTS idx_leads_empresa_captacao ON leads(empresa_id,data_c
 -- Situação manual do contato: independente dos contratos e das automações.
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS situacao_lead VARCHAR(20) NOT NULL DEFAULT 'captado'
  CHECK (situacao_lead IN ('captado','trabalhado','convertido','inativo','perdido'));
+
+-- Feedback enviado pela tela de boas-vindas.
+CREATE TABLE IF NOT EXISTS feedbacks (
+ id SERIAL PRIMARY KEY,
+ tipo VARCHAR(12) NOT NULL CHECK(tipo IN ('elogio','problema','sugestao')),
+ nota INTEGER NOT NULL CHECK(nota BETWEEN 1 AND 5),
+ texto VARCHAR(4000) NOT NULL,
+ permitir_contato BOOLEAN NOT NULL DEFAULT false,
+ email VARCHAR(255), usuario_id INTEGER REFERENCES usuarios(id) ON DELETE SET NULL,
+ criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+);
