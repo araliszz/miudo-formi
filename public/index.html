@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2b1b14">
 <title>FORMI · MIÚDO</title>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/welcome.css">
 
 <!-- Ícone da guia do navegador -->
 <link rel="icon" type="image/png" sizes="32x32" href="/formiga-miudo.png?v=5">
@@ -20,10 +20,40 @@
 
 <script src="/app.js" defer></script>
 <script src="/csv.js" defer></script>
-<script src="/crm-ui.js" defer></script>
+<script src="/crm-ui.js" defer></script><script src="/welcome.js" defer></script>
 </head>
-<body>
+<body class="welcome-entry">
 <div id="toast" role="status" aria-live="polite"></div>
+
+
+<section id="welcome" class="welcome-page">
+<header class="welcome-header"><a class="welcome-brand" href="/" aria-label="MIÚDO FORMI início"><img src="/formiga-miudo.png?v=5" alt=""><span>MIÚDO <small>/ FORMI</small></span></a><button id="welcome-next" class="primary">Próximo passo <span aria-hidden="true">↗</span></button></header>
+<main class="welcome-hero"><div class="welcome-copy"><p class="welcome-eyebrow">CADA CONTATO, UMA POSSIBILIDADE</p><h1>Pequenos passos.<br>Grandes <em>conquistas.</em></h1><p class="welcome-description">Um espaço para organizar sua carteira, aproximar pessoas e fazer seu negócio crescer. O próximo passo começa com você.</p><div class="welcome-pills"><span>Clientes</span><span>Relacionamentos</span><span>Resultados</span></div></div>
+<svg class="welcome-trail" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<path id="march-path" d="M-70 530C110 570 190 420 345 470S560 620 735 430S870 175 1030 255S1210 180 1290 160"/>
+<g id="walking-ant" fill="#352319" stroke="#352319" stroke-width="3" stroke-linecap="round">
+<g class="ant-legs"><path d="M-8-4L-18-17L-31-19M-4 0L-18 1L-31 10M-8 5L-18 17L-29 23M2-4L10-17L23-20M4 0L20 1L28 8M2 5L10 17L22 23" fill="none"/></g>
+<ellipse cx="-20" cy="0" rx="12" ry="9" stroke="none"/><ellipse cx="-3" cy="0" rx="7" ry="6" stroke="none"/><circle cx="12" cy="0" r="7" stroke="none"/>
+<path d="M17-4L25-10L31-9M18 3L27 8L31 6" fill="none" stroke-width="2"/>
+</g></defs>
+<circle cx="955" cy="320" r="228" fill="#f6e6d2"/><circle cx="940" cy="310" r="164" fill="none" stroke="#eddbc5" stroke-width="1"/>
+<path d="M935 468C808 321 854 207 1079 142C1107 328 1001 410 935 468Z" fill="#f0d7b5"/><path d="M935 468C955 333 1003 231 1079 142" fill="none" stroke="#e2be8c" stroke-width="2"/>
+<use href="#march-path" fill="none" stroke="#ccbba5" stroke-width="2" stroke-dasharray="2 12" stroke-linecap="round"/>
+<g class="trail-marcher" data-rest="translate(0, 520)"><animateMotion dur="48s" begin="-0s" rotate="auto" repeatCount="indefinite"><mpath href="#march-path"/></animateMotion><use href="#walking-ant" transform="scale(.7)"/><g class="ant-leaf" transform="translate(7,-4) rotate(-18) scale(.42)"><path d="M0 0C-18-24-5-49 14-57C29-25 19-6 0 0Z" fill="#6d8147"/><path d="M0 0L12-43" stroke="#d7dfa0" stroke-width="1.4"/></g></g><g class="trail-marcher" data-rest="translate(100, 498)"><animateMotion dur="48s" begin="-8s" rotate="auto" repeatCount="indefinite"><mpath href="#march-path"/></animateMotion><use href="#walking-ant" transform="scale(.7)"/><g class="ant-leaf" transform="translate(7,-4) rotate(-6) scale(.42)"><path d="M0 0C-30-18-27-39-8-43C11-49 25-20 0 0Z" fill="#99a857"/><path d="M0 0L-6-34" stroke="#edf0ca" stroke-width="1.4"/></g></g><g class="trail-marcher" data-rest="translate(200, 476)"><animateMotion dur="48s" begin="-16s" rotate="auto" repeatCount="indefinite"><mpath href="#march-path"/></animateMotion><use href="#walking-ant" transform="scale(.7)"/><g class="ant-leaf" transform="translate(7,-4) rotate(6) scale(.42)"><path d="M0 0L-20-13L-10-20L-20-28L-7-30L-3-44L7-31L20-33L14-20L23-14Z" fill="#7f914c"/><path d="M0 0L-2-32" stroke="#dce2b0" stroke-width="1.4"/></g></g><g class="trail-marcher" data-rest="translate(300, 454)"><animateMotion dur="48s" begin="-24s" rotate="auto" repeatCount="indefinite"><mpath href="#march-path"/></animateMotion><use href="#walking-ant" transform="scale(.7)"/><g class="ant-leaf" transform="translate(7,-4) rotate(-18) scale(.42)"><path d="M0 0C-21-11-16-36 0-44C17-33 21-9 0 0Z" fill="#b6ba6f"/><path d="M0 0V-33" stroke="#f0eed0" stroke-width="1.4"/></g></g><g class="trail-marcher" data-rest="translate(400, 432)"><animateMotion dur="48s" begin="-32s" rotate="auto" repeatCount="indefinite"><mpath href="#march-path"/></animateMotion><use href="#walking-ant" transform="scale(.7)"/><g class="ant-leaf" transform="translate(7,-4) rotate(-6) scale(.42)"><path d="M0 0C-34-6-30-28-14-24C-22-48 6-52 8-28C29-33 27-8 0 0Z" fill="#536b40"/><path d="M0 0L0-30" stroke="#cbd7a1" stroke-width="1.4"/></g></g><g class="trail-marcher" data-rest="translate(500, 410)"><animateMotion dur="48s" begin="-40s" rotate="auto" repeatCount="indefinite"><mpath href="#march-path"/></animateMotion><use href="#walking-ant" transform="scale(.7)"/><g class="ant-leaf" transform="translate(7,-4) rotate(6) scale(.42)"><path d="M0 0C-9-20-2-55 5-65C22-37 17-10 0 0Z" fill="#a2ad69"/><path d="M0 0L5-50" stroke="#e9edc2" stroke-width="1.4"/></g></g></svg>
+<p class="welcome-caption">Da primeira conversa à próxima conquista.<br><strong>Vamos construir esse caminho juntos.</strong></p></main>
+<button id="welcome-feedback" class="welcome-feedback">Feedback <span aria-hidden="true">♡</span></button>
+</section>
+<dialog id="feedback-dialog" class="feedback-dialog" aria-labelledby="feedback-title">
+<div class="dialog-heading"><h2 id="feedback-title">Sua opinião faz parte do caminho</h2><button id="feedback-close" type="button" aria-label="Fechar feedback">×</button></div>
+<p class="muted">Como podemos melhorar sua experiência com o FORMI?</p>
+<div id="feedback-types" class="feedback-types"><button type="button" data-feedback-kind="elogio">♡ <span>Dar um elogio</span><span aria-hidden="true">→</span></button><button type="button" data-feedback-kind="problema">! <span>Relatar um problema</span><span aria-hidden="true">→</span></button><button type="button" data-feedback-kind="sugestao">✧ <span>Fazer uma sugestão</span><span aria-hidden="true">→</span></button></div>
+<form id="feedback-form" class="hidden"><input name="tipo" type="hidden"><button id="feedback-back" type="button" class="feedback-back">← Alterar tipo de feedback</button><p id="feedback-kind-label" class="eyebrow"></p>
+<fieldset class="feedback-rating"><legend>Como você avalia sua experiência?</legend><label><input type="radio" name="nota" value="1" required><span aria-hidden="true">☆</span><span class="feedback-sr">1 estrela</span></label><label><input type="radio" name="nota" value="2" required><span aria-hidden="true">☆</span><span class="feedback-sr">2 estrelas</span></label><label><input type="radio" name="nota" value="3" required><span aria-hidden="true">☆</span><span class="feedback-sr">3 estrelas</span></label><label><input type="radio" name="nota" value="4" required><span aria-hidden="true">☆</span><span class="feedback-sr">4 estrelas</span></label><label><input type="radio" name="nota" value="5" required><span aria-hidden="true">☆</span><span class="feedback-sr">5 estrelas</span></label></fieldset>
+<label>Seu comentário<textarea name="texto" maxlength="4000" rows="5" placeholder="Conte o que gostou, o que aconteceu ou o que podemos melhorar. Não inclua senhas nem dados de clientes." required></textarea></label>
+<label class="check"><input id="feedback-contact" name="permitir_contato" type="checkbox">Pode entrar em contato comigo sobre este comentário.</label>
+<label id="feedback-email-label" class="hidden">E-mail para contato<input name="email" type="email" maxlength="255" autocomplete="email"></label>
+<div class="feedback-actions"><button id="feedback-cancel" type="button">Cancelar</button><button class="primary" type="submit">Enviar feedback</button></div></form>
+<p id="feedback-result" role="status" class="feedback-result hidden"></p></dialog>
 
 <section id="auth" class="auth-layout">
 <div class="auth-brand">
@@ -127,7 +157,7 @@
 <h2>Resultados da sua carteira</h2>
 <p class="muted">Leads captados no período · situação atual e conversões acumuladas</p>
 </div>
-<form id="period-form" class="inline-form">
+<form id="period-form" class="inline-form"><label class="hidden" data-manager-filter>Colaborador<select id="dashboard-owner"><option value="">Todas as carteiras</option></select></label>
 <label>De<input name="inicio" type="date"></label>
 <label>Até<input name="fim" type="date"></label>
 <button>Aplicar</button>
@@ -171,7 +201,7 @@
 <button id="add-lead" class="primary">Cadastrar lead</button>
 </div>
 <div class="filters">
-<label>Buscar<input id="lead-search" placeholder="Nome, telefone ou origem"></label>
+<label>Buscar<input id="lead-search" placeholder="Nome, telefone ou origem"></label><label class="hidden" data-manager-filter>Colaborador<select id="contact-owner"><option value="">Todas as carteiras</option></select></label>
 <label>Situação<select id="stage-filter">
 <option value="">Todas</option>
 <option value="nao_trabalhado">Somente captados</option>
@@ -183,12 +213,6 @@
 </select></label>
 <label>Qualificação<select id="qual-filter">
 <option value="">Todas</option><option>IQL</option><option>MQL</option><option>SQL</option><option>PQL</option>
-</select></label>
-<label>Temperatura<select id="temp-filter">
-<option value="">Todas</option>
-<option value="frio">Frio</option>
-<option value="morno">Morno</option>
-<option value="quente">Quente</option>
 </select></label>
 <label>Dificuldade<select id="diff-filter">
 <option value="">Todas</option>
@@ -256,6 +280,7 @@
 <p class="muted">Gerencie disponibilidade e acompanhe o volume de utilização. O acesso à carteira de cada empresa continua sujeito ao vínculo.</p>
 <div id="platform-companies"></div>
 </article>
+<article class="panel"><div class="section-bar"><h2>Feedback recebido</h2><button id="refresh-feedback">Atualizar feedback</button></div><div id="platform-feedback"></div></article>
 <article class="panel"><h2>Auditoria administrativa</h2><div id="platform-audit"></div></article>
 </section>
 </main>
@@ -272,7 +297,6 @@
 <label>Data de captação<input name="data_captacao" type="date" required></label><label>Data de cadastro<input id="lead-created-at" type="text" readonly placeholder="Gerada automaticamente ao salvar"></label><label>Origem<input name="origem" maxlength="80" value="Manual" required></label>
 <label>Situação do lead<select name="situacao_lead"><option value="captado">Captado — ainda não classificado</option><option value="trabalhado">Trabalhado</option><option value="convertido">Convertido</option><option value="inativo">Inativo</option><option value="perdido">Perdido</option></select></label>
 <label>Qualificação<select name="qualificacao"><option>IQL</option><option>MQL</option><option>SQL</option><option>PQL</option></select></label>
-<label>Temperatura<select name="temperatura"><option value="frio">Frio</option><option value="morno">Morno</option><option value="quente">Quente</option></select></label>
 <label>Dificuldade<select name="dificuldade"><option value="simples">Simples</option><option value="complexa">Complexa</option><option value="complexo_irregular">Complexo irregular</option></select></label>
 <label id="lead-owner-label">Responsável<select name="usuario_id" id="lead-owner"></select></label>
 </div>
