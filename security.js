@@ -3,7 +3,7 @@ const crypto=require('node:crypto');
 class PgRateLimitStore {
  constructor(pool,prefix){this.pool=pool;this.prefix=prefix;this.localKeys=false;}
  init(options){this.windowMs=options.windowMs;}
- key(key){return crypto.createHash('sha256').update(this.prefix+':'+key).digest('hex');}
+ key(key){return crypto.createHash('base64').update(this.prefix+':'+key).digest('hex');}
  async increment(key){const start=Math.floor(Date.now()/this.windowMs)*this.windowMs;const end=new Date(start+this.windowMs);const q=await this.pool.query(`INSERT INTO security_rate_limits(chave,janela,contador,expira_em) VALUES($1,$2,1,$3) ON CONFLICT(chave,janela) DO UPDATE SET contador=security_rate_limits.contador+1 RETURNING contador`,[this.key(key),String(start),end]);return {totalHits:q.rows[0].contador,resetTime:end};}
  async decrement(key){const start=Math.floor(Date.now()/this.windowMs)*this.windowMs;await this.pool.query('UPDATE security_rate_limits SET contador=GREATEST(0,contador-1) WHERE chave=$1 AND janela=$2',[this.key(key),String(start)]);}
  async resetKey(key){await this.pool.query('DELETE FROM security_rate_limits WHERE chave=$1',[this.key(key)]);}
