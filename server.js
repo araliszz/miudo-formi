@@ -102,6 +102,7 @@ function createApp({pool,env=process.env,sendMail,sessionStore}={}) {
  const q=await pool.query('SELECT a.id,a.evento,a.empresa_id,a.detalhes,a.criado_em,u.nome AS autor FROM auditoria a LEFT JOIN usuarios u ON u.id=a.usuario_id ORDER BY a.id DESC LIMIT 100');res.json(q.rows);
  }));
  const router=express.Router({mergeParams:true});app.use('/api/empresas/:empresaId',auth,verified,company,router);
+ require('./profile-photos').install(app,router,{pool,auth,verified,admin,wrap});
  router.get('/colaboradores',inspect,wrap(async(req,res)=>{res.json((await pool.query('SELECT u.id,u.nome,m.ativo FROM membros m JOIN usuarios u ON u.id=m.usuario_id WHERE m.empresa_id=$1 ORDER BY u.nome',[req.company.id])).rows);}));
  router.get('/membros',admin,wrap(async(req,res)=>{const q=await pool.query(`SELECT u.id,u.nome,u.email,m.perfil,m.ativo FROM membros m JOIN usuarios u ON u.id=m.usuario_id WHERE m.empresa_id=$1 ORDER BY u.nome`,[req.company.id]);res.json(q.rows);}));
  router.patch('/membros/:usuarioId',admin,wrap(async(req,res)=>{const uid=D.id(req.params.usuarioId);const perfil=D.choice(req.body.perfil,['admin','usuario'],'Perfil');if(typeof req.body.ativo!=='boolean')D.fail('Informe se o vínculo está ativo.');

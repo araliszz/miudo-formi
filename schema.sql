@@ -117,3 +117,17 @@ CREATE TABLE IF NOT EXISTS feedbacks (
  email VARCHAR(255), usuario_id INTEGER REFERENCES usuarios(id) ON DELETE SET NULL,
  criado_em TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Fotos persistentes. A foto pessoal acompanha a conta em todas as empresas.
+CREATE TABLE IF NOT EXISTS usuario_fotos (
+ usuario_id INTEGER PRIMARY KEY REFERENCES usuarios(id) ON DELETE CASCADE,
+ imagem BYTEA NOT NULL CHECK(octet_length(imagem) BETWEEN 1 AND 786432),
+ mime VARCHAR(20) NOT NULL CHECK(mime IN ('image/jpeg','image/png','image/webp')),
+ atualizado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS empresa_fotos (
+ empresa_id INTEGER PRIMARY KEY REFERENCES empresas(id) ON DELETE CASCADE,
+ imagem BYTEA NOT NULL CHECK(octet_length(imagem) BETWEEN 1 AND 786432),
+ mime VARCHAR(20) NOT NULL CHECK(mime IN ('image/jpeg','image/png','image/webp')),
+ atualizado_em TIMESTAMPTZ NOT NULL DEFAULT now()
+);
