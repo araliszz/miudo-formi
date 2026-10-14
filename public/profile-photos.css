@@ -1,0 +1,27 @@
+/* Somente fotos pessoais e da empresa. */
+#workspace #modern-profile{position:relative;overflow:hidden}
+#workspace #modern-profile.has-photo #modern-initials{display:none}
+#workspace #photo-avatar{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+#workspace #photo-avatar.hidden{display:none}
+.photo-profile-block{margin:18px 0;padding:18px 0;border-top:1px solid #eee3d8}
+.photo-profile-heading{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+#workspace .photo-profile-heading strong{font-size:13px}
+.photo-profile-heading p{margin:4px 0 0!important;font-size:11px;line-height:1.6}
+.photo-profile-preview,.photo-company-badge{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#f6e6d4;color:#735336;display:grid;place-items:center;overflow:hidden;font-size:12px;font-weight:700;border:1px solid #ead9c5}
+.photo-profile-preview img,.photo-company-badge img{width:100%;height:100%;object-fit:cover;display:block}
+#workspace #photo-company-badge{width:46px;height:46px;flex-basis:46px;border-radius:14px;align-self:flex-end}
+#workspace .photo-profile-block button{font-size:12px;min-height:42px;margin:0}
+#workspace .profile-panel{max-height:calc(100dvh - 105px);overflow-y:auto;overscroll-behavior:contain}
+#photo-dialog{width:min(520px,calc(100vw - 28px));padding:30px;border-radius:24px;background:#fffdf9;border:1px solid #e8ddd0;box-shadow:0 25px 100px #2b1b1430}
+#photo-dialog::backdrop{background:#271c1666;backdrop-filter:blur(5px)}
+#photo-dialog .dialog-heading{gap:16px}#photo-dialog h2{font-size:23px}
+#photo-dialog-description{font-size:13px;line-height:1.7}
+.photo-preview{width:180px;height:180px;border-radius:50%;background:#f3e6d5;border:5px solid #fff;box-shadow:0 0 0 1px #e9dbca;margin:26px auto 22px;overflow:hidden;display:grid;place-items:center;position:relative}
+.photo-preview>span{font-size:45px;font-weight:750;color:#8d6644}
+.photo-preview img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+#photo-dialog #photo-choose{display:block;margin:0 auto 20px;padding:12px 22px;border-radius:12px;min-height:44px}
+.photo-help{font-size:11px;line-height:1.8;text-align:center;max-width:390px;margin:0 auto}
+.photo-status{font-size:12px;color:#906238;line-height:1.7;min-height:24px;text-align:center;margin:18px 0}
+.photo-dialog-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px;padding-top:18px;border-top:1px solid #eee3d7}
+.photo-dialog-actions button{font-size:12px;min-height:44px;border-radius:12px}#photo-remove{margin-right:auto;color:#a24632}
+@media(max-width:600px){#workspace .company-controls{flex-wrap:wrap}#workspace .company-controls label{min-width:150px}#workspace #photo-company-badge{width:38px;height:46px;flex-basis:38px}.photo-dialog-actions button{flex:1 1 110px}#photo-remove{flex-basis:100%}#photo-dialog{padding:24px}#workspace .profile-panel{top:70px;max-height:calc(100dvh - 85px)}}
