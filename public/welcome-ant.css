@@ -1,0 +1,10 @@
+/* Somente o ícone decorativo do botão Próximo passo. */
+#welcome-next{position:relative;overflow:visible}
+#welcome-next .welcome-peek-ant{position:absolute;top:-26px;right:16px;width:38px;height:34px;overflow:hidden;pointer-events:none}
+#welcome-next .welcome-peek-ant .peek-head{animation:welcome-ant-peek 3.8s ease-in-out infinite;transform-origin:19px 22px}
+#welcome-next .welcome-peek-ant .peek-antenna-left{animation:welcome-ant-left 1.6s ease-in-out infinite;transform-origin:14px 16px}
+#welcome-next .welcome-peek-ant .peek-antenna-right{animation:welcome-ant-right 1.9s ease-in-out infinite;transform-origin:24px 16px}
+@keyframes welcome-ant-peek{0%,100%{transform:translateY(1px)}45%,65%{transform:translateY(-1px)}}
+@keyframes welcome-ant-left{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(9deg)}}
+@keyframes welcome-ant-right{0%,100%{transform:rotate(6deg)}50%{transform:rotate(-9deg)}}
+@media(prefers-reduced-motion:reduce){#welcome-next .welcome-peek-ant *{animation:none!important}}
