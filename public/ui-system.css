@@ -1,0 +1,350 @@
+/* FORMI — sistema visual. As duas paletas e medidas ficam centralizadas aqui.
+   A camada não modifica a tela de início, o login ou as formigas existentes. */
+:root{
+ --ui-bg:#f8f4ed;--ui-surface:#fffdf9;--ui-raised:#fff;--ui-soft:#f2ebe1;--ui-field:#fffefa;
+ --ui-ink:#35241a;--ui-muted:#756150;--ui-subtle:#7f6b59;--ui-line:#e2d6c7;--ui-line-strong:#c9b59e;
+ --ui-accent:#f68c32;--ui-accent-hover:#ffa24d;--ui-accent-ink:#2c190c;--ui-accent-soft:#fff0dc;--ui-accent-text:#934709;
+ --ui-success:#285c3c;--ui-success-bg:#e9f3ea;--ui-danger:#a13b2e;--ui-danger-bg:#fff0eb;--ui-warning:#845013;--ui-warning-bg:#fff1d9;
+ --ui-cool:#345976;--ui-cool-bg:#e9f1f8;--ui-focus:#a45417;--ui-focus-ring:#ec9a5b33;--ui-scheme:light;
+ --ui-chart:#ee7b24;--ui-chart-green:#487d55;--ui-header:#f8f4edf5;--ui-backdrop:#21140e73;
+ --ui-nav:#291a12;--ui-nav-ink:#f5e7d9;--ui-nav-muted:#c5ac94;--ui-nav-active:#754725;
+ --ui-hero:#302017;--ui-hero-end:#82441f;--ui-hero-ink:#fff5e9;--ui-hero-muted:#e1c9b1;
+ --ui-shadow:0 7px 26px #432b1807;--ui-shadow-hover:0 14px 35px #432b1810;--ui-shadow-popover:0 24px 80px #2a180d24;
+ --ui-font:Inter,"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+ --ui-font-xs:.75rem;--ui-font-sm:.875rem;--ui-font-md:1rem;--ui-font-lg:1.2rem;
+ --ui-s1:4px;--ui-s2:8px;--ui-s3:12px;--ui-s4:16px;--ui-s5:20px;--ui-s6:24px;--ui-s8:32px;--ui-s10:40px;
+ --ui-r-sm:10px;--ui-r-md:14px;--ui-r-lg:22px;--ui-r-xl:28px;--ui-r-pill:999px;
+ --ui-control:46px;--ui-page-gap:28px;--ui-panel-pad:30px;--ui-fast:160ms;--ui-ease:cubic-bezier(.2,.7,.2,1);
+}
+html[data-formi-theme="dark"]{
+ --ui-bg:#17100d;--ui-surface:#241a15;--ui-raised:#30221b;--ui-soft:#2b2019;--ui-field:#1b1410;
+ --ui-ink:#f7ede3;--ui-muted:#c8b3a0;--ui-subtle:#baa18b;--ui-line:#4a372a;--ui-line-strong:#836346;
+ --ui-accent:#ffa24d;--ui-accent-hover:#ffb86f;--ui-accent-ink:#2b170a;--ui-accent-soft:#3c2818;--ui-accent-text:#ffc58e;
+ --ui-success:#b7dfb9;--ui-success-bg:#233527;--ui-danger:#ffb4a4;--ui-danger-bg:#41251d;--ui-warning:#ffd08c;--ui-warning-bg:#3b2c18;
+ --ui-cool:#bfdcf1;--ui-cool-bg:#1d2d39;--ui-focus:#ffb264;--ui-focus-ring:#ffa24d33;--ui-scheme:dark;
+ --ui-chart:#ffad62;--ui-chart-green:#a6d3a8;--ui-header:#1c140ff5;--ui-backdrop:#080503bd;
+ --ui-nav:#150e0a;--ui-nav-ink:#f8ebde;--ui-nav-muted:#c6aa90;--ui-nav-active:#51351f;
+ --ui-hero:#201510;--ui-hero-end:#593017;--ui-hero-ink:#fff0df;--ui-hero-muted:#dfbfa0;
+ --ui-shadow:0 8px 30px #00000012;--ui-shadow-hover:0 16px 35px #0000002b;--ui-shadow-popover:0 24px 90px #00000073;
+}
+/* Base e navegação — o seletor de tema permite superar apenas estilos visuais. */
+html[data-formi-theme] body.modern-workspace{background:var(--ui-bg);color:var(--ui-ink);color-scheme:var(--ui-scheme)}
+html[data-formi-theme] #workspace{background:var(--ui-bg);color:var(--ui-ink);font-family:var(--ui-font);line-height:1.6;color-scheme:var(--ui-scheme);--modern-line:var(--ui-line);--modern-ink:var(--ui-ink);--modern-muted:var(--ui-muted);--modern-shadow:var(--ui-shadow);--crm-border:var(--ui-line);--crm-muted:var(--ui-muted)}
+html[data-formi-theme] #workspace>main{padding-block:var(--ui-s8) 70px!important;max-width:1680px;scroll-padding-top:130px}
+html[data-formi-theme] #workspace :is(h1,h2,h3,h4){color:var(--ui-ink);text-wrap:balance}
+html[data-formi-theme] #workspace h1{letter-spacing:-1px}
+html[data-formi-theme] #workspace h2{font-size:clamp(21px,1.8vw,26px);line-height:1.35}
+html[data-formi-theme] #workspace h3{font-size:19px;line-height:1.4}
+html[data-formi-theme] #workspace :is(.muted,.small.muted,.modern-greeting){color:var(--ui-muted)}
+html[data-formi-theme] #workspace .eyebrow{color:var(--ui-accent-text);font-size:11px;letter-spacing:1.6px}
+html[data-formi-theme] #workspace :is(p,td,strong,small,.lead-head){overflow-wrap:anywhere}
+html[data-formi-theme] #workspace a:not(.modern-brand){color:var(--ui-accent-text);text-underline-offset:3px}
+html[data-formi-theme] #workspace a:hover{text-decoration-thickness:2px}
+html[data-formi-theme] #workspace :is(button,input,select,textarea,a,summary){-webkit-tap-highlight-color:transparent}
+html[data-formi-theme] #workspace :is(button,input,select,textarea,a,summary):focus-visible,body.modern-workspace dialog:not(#feedback-dialog) :is(button,input,select,textarea,a,summary):focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px;box-shadow:0 0 0 5px var(--ui-focus-ring)}
+html[data-formi-theme] #workspace :is(.two-columns,.three-columns){gap:var(--ui-page-gap)}
+html[data-formi-theme] #workspace .topbar{gap:var(--ui-s8);margin-bottom:var(--ui-s8)}
+html[data-formi-theme] #workspace #role-label{color:var(--ui-muted);font-size:10px}
+html[data-formi-theme] #workspace .modern-header{background:var(--ui-header);border-color:var(--ui-line);gap:var(--ui-s6)}
+html[data-formi-theme] #workspace .modern-brand{color:var(--ui-ink)}
+html[data-formi-theme] #workspace .modern-tabs{background:var(--ui-surface);border-color:var(--ui-line);padding:5px;box-shadow:var(--ui-shadow)}
+html[data-formi-theme] #workspace .modern-tabs button{color:var(--ui-muted);background:transparent;font-weight:550}
+html[data-formi-theme] #workspace .modern-tabs button.active{background:var(--ui-accent-soft);color:var(--ui-accent-text);box-shadow:inset 0 0 0 1px var(--ui-line);font-weight:750}
+html[data-formi-theme] #workspace .modern-tabs button:hover{background:var(--ui-soft);color:var(--ui-ink)}
+html[data-formi-theme] #workspace .icon-button{color:var(--ui-ink);background:transparent;border:1px solid transparent}
+html[data-formi-theme] #workspace .icon-button:hover{background:var(--ui-soft);border-color:var(--ui-line)}
+html[data-formi-theme] #workspace #modern-profile{background:var(--ui-nav);color:var(--ui-nav-ink);box-shadow:0 0 0 4px var(--ui-soft);border:1px solid var(--ui-line-strong)}
+html[data-formi-theme] #workspace .profile-panel{background:var(--ui-surface);border-color:var(--ui-line);box-shadow:var(--ui-shadow-popover);padding:var(--ui-s6);overscroll-behavior:contain}
+html[data-formi-theme] #workspace .profile-panel>strong{font-size:19px}
+html[data-formi-theme] #workspace .profile-role{background:var(--ui-soft);color:var(--ui-ink);border:1px solid var(--ui-line)}
+html[data-formi-theme] #workspace #modern-signout{color:var(--ui-danger)}
+html[data-formi-theme] #workspace :is(.photo-profile-block,.photo-dialog-actions){border-color:var(--ui-line)}
+html[data-formi-theme] #workspace :is(.photo-profile-preview,.photo-company-badge){background:var(--ui-soft);color:var(--ui-accent-text);border-color:var(--ui-line-strong)}
+html[data-formi-theme] #workspace .sidebar{background:var(--ui-nav)}
+html[data-formi-theme] #workspace .sidebar :is(.brand strong,.nav,.sidebar-footer strong){color:var(--ui-nav-ink)}
+html[data-formi-theme] #workspace .sidebar :is(.brand small,.menu-label,.sidebar-footer small){color:var(--ui-nav-muted)}
+html[data-formi-theme] #workspace .sidebar .nav{background:transparent;border:1px solid transparent;box-shadow:none;padding:14px 16px}
+html[data-formi-theme] #workspace .sidebar .nav:hover{background:var(--ui-nav-active)}
+html[data-formi-theme] #workspace .sidebar .nav.active{background:var(--ui-nav-active);color:#ffcf9d;border-color:#99633766;box-shadow:inset 3px 0 var(--ui-accent)}
+html[data-formi-theme] #workspace .sidebar .sidebar-footer{border-color:#75543d66}
+html[data-formi-theme] #workspace .sidebar .sidebar-footer button{background:transparent;color:var(--ui-nav-ink);border-color:#75543d99}
+html[data-formi-theme] #workspace .sidebar #close-mobile-menu{color:var(--ui-nav-muted);background:transparent;border-color:transparent}
+html[data-formi-theme] #modern-menu-backdrop{background:var(--ui-backdrop)}
+/* Componentes: controles e os mesmos estados em todas as abas. */
+html[data-formi-theme] #workspace button:not(:where(.nav,#modern-profile,.op-title,#modern-menu-backdrop)),body.modern-workspace dialog:not(#feedback-dialog) button{border-color:var(--ui-line);color:var(--ui-ink);background:var(--ui-raised);border-radius:var(--ui-r-md);min-height:44px;font-weight:600;transition:background var(--ui-fast) var(--ui-ease),border-color var(--ui-fast),box-shadow var(--ui-fast),transform var(--ui-fast)}
+html[data-formi-theme] #workspace button:not(:where(.nav,#modern-profile,.op-title,#modern-menu-backdrop)):hover,body.modern-workspace dialog:not(#feedback-dialog) button:hover{background:var(--ui-soft);border-color:var(--ui-line-strong);box-shadow:var(--ui-shadow)}
+html[data-formi-theme] #workspace button.primary,body.modern-workspace dialog:not(#feedback-dialog) button.primary{background:var(--ui-accent);color:var(--ui-accent-ink);border-color:var(--ui-accent);box-shadow:0 4px 13px var(--ui-focus-ring);font-weight:750}
+html[data-formi-theme] #workspace button.primary:hover,body.modern-workspace dialog:not(#feedback-dialog) button.primary:hover{background:var(--ui-accent-hover);border-color:var(--ui-accent-hover);color:var(--ui-accent-ink)}
+html[data-formi-theme] #workspace button.active:not(.nav),html[data-formi-theme] #workspace button[aria-pressed="true"]:not(:where(#modern-profile)){background:var(--ui-accent-soft);color:var(--ui-accent-text);border-color:var(--ui-line-strong)}
+html[data-formi-theme] #workspace button:disabled,body.modern-workspace dialog:not(#feedback-dialog) button:disabled{opacity:.65;cursor:not-allowed;box-shadow:none;transform:none}
+html[data-formi-theme] #workspace :is(input,select,textarea),body.modern-workspace dialog:not(#feedback-dialog) :is(input,select,textarea){background:var(--ui-field);color:var(--ui-ink);border:1px solid var(--ui-line-strong);border-radius:var(--ui-r-md);padding:12px 14px;min-height:var(--ui-control);font-size:14px;line-height:1.6;color-scheme:var(--ui-scheme);transition:border-color var(--ui-fast),box-shadow var(--ui-fast);max-width:100%}
+html[data-formi-theme] #workspace :is(input,textarea)::placeholder,body.modern-workspace dialog:not(#feedback-dialog) :is(input,textarea)::placeholder{color:var(--ui-subtle);opacity:1;font-weight:400}
+html[data-formi-theme] #workspace :is(input,select,textarea):hover:not(:disabled),body.modern-workspace dialog:not(#feedback-dialog) :is(input,select,textarea):hover:not(:disabled){border-color:var(--ui-accent-text)}
+html[data-formi-theme] #workspace :is(input,select,textarea):focus,body.modern-workspace dialog:not(#feedback-dialog) :is(input,select,textarea):focus{border-color:var(--ui-focus);box-shadow:0 0 0 4px var(--ui-focus-ring)}
+html[data-formi-theme] #workspace label,body.modern-workspace dialog:not(#feedback-dialog) label{color:var(--ui-muted);font-size:13px;font-weight:600;gap:9px;line-height:1.5}
+html[data-formi-theme] #workspace :is(input,textarea):read-only,body.modern-workspace dialog:not(#feedback-dialog) :is(input,textarea):read-only{background:var(--ui-soft);color:var(--ui-muted)}
+html[data-formi-theme] #workspace :is(input,select,textarea):disabled,body.modern-workspace dialog:not(#feedback-dialog) :is(input,select,textarea):disabled{background:var(--ui-soft);opacity:.7;cursor:not-allowed}
+html[data-formi-theme] #workspace :is(input,select,textarea)[aria-invalid="true"],body.modern-workspace dialog:not(#feedback-dialog) :is(input,select,textarea)[aria-invalid="true"]{border-color:var(--ui-danger);box-shadow:0 0 0 3px var(--ui-danger-bg)}
+html[data-formi-theme] #workspace :is(input,select,textarea):user-invalid,body.modern-workspace dialog:not(#feedback-dialog) :is(input,select,textarea):user-invalid{border-color:var(--ui-danger)}
+html[data-formi-theme] #workspace :is(input[type="checkbox"],input[type="radio"]),body.modern-workspace dialog:not(#feedback-dialog) :is(input[type="checkbox"],input[type="radio"]){accent-color:var(--ui-accent);width:19px;height:19px;min-height:19px;flex-shrink:0;cursor:pointer}
+html[data-formi-theme] #workspace input[type="file"],body.modern-workspace dialog:not(#feedback-dialog) input[type="file"]{padding:10px}
+html[data-formi-theme] #workspace input[type="file"]::file-selector-button{background:var(--ui-soft);color:var(--ui-ink);border:1px solid var(--ui-line);padding:9px 12px;margin-right:12px;border-radius:var(--ui-r-sm);cursor:pointer}
+html[data-formi-theme] #workspace :is(form,.form-grid),body.modern-workspace dialog:not(#feedback-dialog) :is(form,.form-grid){gap:var(--ui-s5)}
+html[data-formi-theme] #workspace form :is(textarea),body.modern-workspace dialog:not(#feedback-dialog) textarea{line-height:1.8;min-height:110px}
+html[data-formi-theme] #workspace .check{padding-block:5px;align-items:flex-start;gap:12px}
+/* Cartões, conteúdo e hierarquia. */
+html[data-formi-theme] #workspace :is(.panel,.lead-card){background:var(--ui-surface);border-color:var(--ui-line);border-radius:var(--ui-r-lg);padding:var(--ui-panel-pad);box-shadow:var(--ui-shadow);margin-bottom:var(--ui-page-gap)}
+html[data-formi-theme] #workspace .panel>h2:first-child,html[data-formi-theme] #workspace .panel>h3:first-child{margin-bottom:var(--ui-s5)}
+html[data-formi-theme] #workspace .metrics{gap:var(--ui-s5);margin-bottom:var(--ui-page-gap)}
+html[data-formi-theme] #workspace .metric{background:var(--ui-surface);color:var(--ui-ink);border-color:var(--ui-line);border-radius:var(--ui-r-lg);padding:var(--ui-s6);min-height:154px;box-shadow:var(--ui-shadow);gap:12px}
+html[data-formi-theme] #workspace .metric:before{background:var(--ui-accent)}
+html[data-formi-theme] #workspace .metric.warning:before{background:var(--ui-danger)}
+html[data-formi-theme] #workspace .metric :is(span,small){color:var(--ui-muted);font-size:13px;line-height:1.6}
+html[data-formi-theme] #workspace .metric strong{font-size:clamp(25px,2.4vw,37px);font-variant-numeric:tabular-nums;letter-spacing:-1px;color:var(--ui-ink);line-height:1.25}
+html[data-formi-theme] #workspace .metric.revenue{background:var(--ui-nav);color:var(--ui-nav-ink)}
+html[data-formi-theme] #workspace .metric.revenue strong{color:var(--ui-nav-ink)}
+html[data-formi-theme] #workspace .metric.revenue :is(span,small){color:var(--ui-nav-muted)}
+html[data-formi-theme] #workspace .metric:hover{box-shadow:var(--ui-shadow-hover);transform:translateY(-2px)}
+html[data-formi-theme] #workspace :is(.notice,.ui-notice){background:var(--ui-accent-soft);color:var(--ui-ink);border:1px solid var(--ui-line);padding:var(--ui-s5);border-radius:var(--ui-r-md)}
+html[data-formi-theme] #workspace .notice strong{color:var(--ui-accent-text)}
+html[data-formi-theme] #workspace .empty{background:var(--ui-soft);color:var(--ui-muted);border:1px dashed var(--ui-line-strong);padding:var(--ui-s8);font-size:14px;line-height:1.75}
+html[data-formi-theme] #workspace .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:var(--ui-r-pill);background:var(--ui-soft);color:var(--ui-ink);font-size:12px;font-weight:650;line-height:1.5;max-width:100%;white-space:normal}
+html[data-formi-theme] #workspace .badge:is(.captado,.trabalhado,.morno){background:var(--ui-accent-soft);color:var(--ui-accent-text)}
+html[data-formi-theme] #workspace .badge:is(.convertido,.ganha){background:var(--ui-success-bg);color:var(--ui-success)}
+html[data-formi-theme] #workspace .badge:is(.perdido,.cancelado,.quente){background:var(--ui-danger-bg);color:var(--ui-danger)}
+html[data-formi-theme] #workspace .badge.inativo{background:var(--ui-warning-bg);color:var(--ui-warning)}
+html[data-formi-theme] #workspace .badge.frio{background:var(--ui-cool-bg);color:var(--ui-cool)}
+html[data-formi-theme] #workspace .section-bar{gap:var(--ui-s6);align-items:center;margin-block:var(--ui-s6);flex-wrap:wrap}
+html[data-formi-theme] #workspace .section-bar .inline-form{background:var(--ui-soft);border-color:var(--ui-line);padding:var(--ui-s5);gap:var(--ui-s3)}
+html[data-formi-theme] #workspace .inline-form label{min-width:145px}
+html[data-formi-theme] #workspace .modern-hero{background:radial-gradient(ellipse at 92% 80%,var(--ui-hero-end),transparent 65%),var(--ui-hero);color:var(--ui-hero-ink);border:1px solid var(--ui-line);padding:var(--ui-s10);border-radius:var(--ui-r-xl)}
+html[data-formi-theme] #workspace .modern-hero h2{color:var(--ui-hero-ink);font-size:clamp(29px,3vw,42px)}
+html[data-formi-theme] #workspace .modern-hero p{color:var(--ui-hero-muted);font-size:14px}
+html[data-formi-theme] #workspace .modern-hero .eyebrow{color:#ffba7c;font-size:10px}
+html[data-formi-theme] #workspace .modern-hero em{color:#ffad61}
+html[data-formi-theme] #workspace .hero-actions button:not(.primary){background:#ffffff08;color:var(--ui-hero-ink);border-color:#b77b4b77}
+html[data-formi-theme] #workspace .hero-actions button:not(.primary):hover{background:#ffffff16}
+html[data-formi-theme] #workspace #crm-focus{background:var(--ui-surface)}
+html[data-formi-theme] #workspace .focus-grid>div{border-color:var(--ui-line);padding:var(--ui-s3) var(--ui-s5) var(--ui-s3) 0}
+html[data-formi-theme] #workspace .focus-grid :is(strong,span){color:var(--ui-ink)}
+html[data-formi-theme] #workspace .focus-grid span{color:var(--ui-muted);font-size:13px;line-height:1.6}
+html[data-formi-theme] #workspace .focus-grid .overdue :is(strong,span){color:var(--ui-danger)}
+html[data-formi-theme] #workspace .bar{height:12px;background:var(--ui-soft)}
+html[data-formi-theme] #workspace .bar-fill{background:var(--ui-accent)}
+html[data-formi-theme] #workspace .bar-label{color:var(--ui-muted);font-size:13px;gap:var(--ui-s4)}
+html[data-formi-theme] #workspace .bar-label strong{color:var(--ui-ink);font-variant-numeric:tabular-nums}
+/* Clientes, filtros e ações. */
+html[data-formi-theme] #workspace .lead-card{position:relative;border-inline-start:3px solid var(--ui-line-strong);transition:border-color var(--ui-fast),box-shadow var(--ui-fast)}
+html[data-formi-theme] #workspace .lead-card:hover,html[data-formi-theme] #workspace .lead-card:focus-within{border-inline-start-color:var(--ui-accent);box-shadow:var(--ui-shadow-hover)}
+html[data-formi-theme] #workspace .lead-head{gap:var(--ui-s6)}
+html[data-formi-theme] #workspace .lead-head h3{font-size:22px;margin-bottom:10px}
+html[data-formi-theme] #workspace .lead-head p{font-size:13px;line-height:1.8;color:var(--ui-muted)}
+html[data-formi-theme] #workspace .lead-meta{padding:var(--ui-s6) 0;margin:var(--ui-s5) 0;border-color:var(--ui-line);gap:var(--ui-s6);font-size:14px;color:var(--ui-ink)}
+html[data-formi-theme] #workspace .lead-meta span{font-size:12px;color:var(--ui-muted);margin-bottom:6px}
+html[data-formi-theme] #workspace .lead-actions{gap:var(--ui-s3)}
+html[data-formi-theme] #workspace .lead-actions button{font-size:13px;padding:11px 16px}
+html[data-formi-theme] #workspace .filters{background:var(--ui-soft);border:0;box-shadow:none;border-radius:var(--ui-r-md);padding:var(--ui-s5);gap:var(--ui-s5);margin-bottom:var(--ui-s5)}
+html[data-formi-theme] #workspace .crm-toolbar{padding:var(--ui-s5);background:var(--ui-soft);border-radius:var(--ui-r-md);gap:var(--ui-s4);margin-block:var(--ui-s5)}
+html[data-formi-theme] #workspace .crm-toolbar label{min-width:160px}
+html[data-formi-theme] #workspace .ui-filter-drawer{padding:0;background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:var(--ui-r-lg);box-shadow:var(--ui-shadow);margin:0 0 var(--ui-s4)}
+.ui-filter-drawer>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;position:relative;cursor:pointer;min-height:80px}
+.ui-filter-drawer>summary::-webkit-details-marker{display:none}
+.ui-filter-drawer>summary>span:first-child{display:grid;gap:5px}
+.ui-filter-drawer>summary strong{font-size:15px;color:var(--ui-ink)}
+.ui-filter-drawer>summary small{font-size:12px;color:var(--ui-muted);font-weight:400;line-height:1.6}
+.ui-filter-drawer>summary:after{content:'';width:8px;height:8px;border-right:2px solid var(--ui-muted);border-bottom:2px solid var(--ui-muted);transform:rotate(45deg);flex-shrink:0;transition:transform var(--ui-fast)}
+.ui-filter-drawer[open]>summary:after{transform:rotate(225deg)}
+.ui-filter-drawer[open]>summary{border-bottom:1px solid var(--ui-line)}
+.ui-filter-count{font-size:11px;font-weight:650;border:1px solid var(--ui-line);padding:5px 10px;border-radius:var(--ui-r-pill);background:var(--ui-soft);color:var(--ui-muted);margin-left:auto;white-space:nowrap}
+.ui-has-filters .ui-filter-count{background:var(--ui-accent-soft);color:var(--ui-accent-text);border-color:var(--ui-line-strong)}
+.ui-filter-content{padding:var(--ui-s6)}
+.ui-filter-footer{display:flex;align-items:center;justify-content:space-between;gap:var(--ui-s4);border-top:1px solid var(--ui-line);padding-top:var(--ui-s4)}
+.ui-filter-footer p{margin:0}
+.ui-filter-chips{display:flex;gap:var(--ui-s2);flex-wrap:wrap;margin:0 0 var(--ui-s6)}
+html[data-formi-theme] #workspace .ui-filter-chip{background:var(--ui-accent-soft);color:var(--ui-accent-text);border-color:var(--ui-line);font-size:12px;padding:7px 12px;min-height:36px;border-radius:var(--ui-r-pill);text-align:left;overflow-wrap:anywhere;max-width:100%}
+html[data-formi-theme] #workspace .action-row{border-color:var(--ui-line);padding:var(--ui-s6) 0;gap:var(--ui-s6);color:var(--ui-ink)}
+html[data-formi-theme] #workspace .action-row :is(p,small){color:var(--ui-muted);line-height:1.8}
+html[data-formi-theme] #workspace .action-row.done{opacity:1}
+html[data-formi-theme] #workspace .action-row.done strong{text-decoration:line-through;color:var(--ui-muted)}
+html[data-formi-theme] #workspace :is(.overdue,.action-row.overdue strong){color:var(--ui-danger)}
+html[data-formi-theme] #workspace :is(.history-item,.stage-setting){border-color:var(--ui-line);padding:var(--ui-s5) 0}
+html[data-formi-theme] #workspace .history-item :is(p,small){line-height:1.8;color:var(--ui-muted)}
+/* Tabelas e relatórios — cabeçalhos fixos continuam funcionando. */
+html[data-formi-theme] #workspace .table-wrap{border-color:var(--ui-line);background:var(--ui-surface);border-radius:var(--ui-r-md);scrollbar-color:var(--ui-line-strong) var(--ui-soft)}
+html[data-formi-theme] #workspace table{font-size:14px;color:var(--ui-ink)}
+html[data-formi-theme] #workspace th{background:var(--ui-soft);color:var(--ui-muted);border-color:var(--ui-line);font-size:12px;padding:16px}
+html[data-formi-theme] #workspace td{border-color:var(--ui-line);padding:18px 16px;font-variant-numeric:tabular-nums;line-height:1.7}
+html[data-formi-theme] #workspace tbody tr:nth-child(even){background:var(--ui-soft)}
+html[data-formi-theme] #workspace tbody tr:hover{background:var(--ui-accent-soft)}
+html[data-formi-theme] #workspace details:not(.ui-filter-drawer) summary{color:var(--ui-accent-text);padding:3px 0;line-height:1.7}
+html[data-formi-theme] #workspace #report-period{padding:var(--ui-s5);background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:var(--ui-r-lg);margin-bottom:var(--ui-page-gap)}
+html[data-formi-theme] #workspace #report-comparison{color:var(--ui-muted);line-height:1.8}
+html[data-formi-theme] #workspace #report-lead-balance .metric{box-shadow:none}
+/* Funil e agenda. */
+html[data-formi-theme] #workspace .kanban{gap:var(--ui-s5);padding-bottom:var(--ui-s6);scroll-snap-type:x proximity;scrollbar-color:var(--ui-line-strong) var(--ui-soft)}
+html[data-formi-theme] #workspace .kanban-column{background:var(--ui-soft);border-color:var(--ui-line);border-radius:var(--ui-r-lg);padding:var(--ui-s5);flex-basis:310px;scroll-snap-align:start}
+html[data-formi-theme] #workspace .kanban-column header{border-bottom:1px solid var(--ui-line);padding-bottom:var(--ui-s4);margin-bottom:var(--ui-s4)}
+html[data-formi-theme] #workspace .kanban-column h3{color:var(--ui-ink);font-size:16px}
+html[data-formi-theme] #workspace .op-card{background:var(--ui-surface);border-color:var(--ui-line);border-radius:var(--ui-r-md);box-shadow:var(--ui-shadow);padding:var(--ui-s5)}
+html[data-formi-theme] #workspace .op-card:hover{box-shadow:var(--ui-shadow-hover);border-color:var(--ui-line-strong)}
+html[data-formi-theme] #workspace .op-title{color:var(--ui-ink);background:transparent;border:0;min-height:0;font-size:17px;line-height:1.5;font-weight:750}
+html[data-formi-theme] #workspace .op-card>strong{color:var(--ui-accent-text);font-size:18px}
+html[data-formi-theme] #workspace .op-card select{background:var(--ui-field);font-size:13px}
+html[data-formi-theme] #workspace .kanban-column:has(.op-card:active){border-color:var(--ui-accent)}
+html[data-formi-theme] #workspace #calendar-list .panel>h3{border-bottom:1px solid var(--ui-line);padding-bottom:var(--ui-s4);color:var(--ui-accent-text)}
+/* Gráficos, estados e legendas em ambos os temas. */
+html[data-formi-theme] #workspace .trend-panel{background:var(--ui-surface)}
+html[data-formi-theme] #workspace .trend-controls{background:var(--ui-soft);border-color:var(--ui-line);padding:var(--ui-s5);gap:var(--ui-s4)}
+html[data-formi-theme] #workspace .trend-heading p{color:var(--ui-muted);font-size:14px}
+html[data-formi-theme] #workspace .trend-heading .eyebrow{color:var(--ui-accent-text);font-size:10px}
+html[data-formi-theme] #workspace .live-pill{background:var(--ui-success-bg);color:var(--ui-success);border-color:var(--ui-line);font-size:11px}
+html[data-formi-theme] #workspace .live-pill i{background:var(--ui-success);box-shadow:none}
+html[data-formi-theme] #workspace .trend-summary{gap:var(--ui-s4)}
+html[data-formi-theme] #workspace .trend-summary>div{background:var(--ui-field);border-color:var(--ui-line);border-radius:var(--ui-r-md);padding:var(--ui-s5)}
+html[data-formi-theme] #workspace .trend-summary :is(span,small){color:var(--ui-muted);font-size:12px;line-height:1.6}
+html[data-formi-theme] #workspace .trend-summary strong{color:var(--ui-ink);font-variant-numeric:tabular-nums;font-size:32px}
+html[data-formi-theme] #workspace .trend-summary .trend-direction{background:var(--ui-soft);border:1px solid var(--ui-line)}
+html[data-formi-theme] #workspace .trend-summary .alta{background:var(--ui-success-bg)}
+html[data-formi-theme] #workspace .trend-summary .alta :is(strong,span,small){color:var(--ui-success)}
+html[data-formi-theme] #workspace .trend-summary .queda{background:var(--ui-danger-bg)}
+html[data-formi-theme] #workspace .trend-summary .queda :is(strong,span,small){color:var(--ui-danger)}
+html[data-formi-theme] #workspace .chart-legend{color:var(--ui-muted);font-size:12px;gap:var(--ui-s5)}
+html[data-formi-theme] #workspace .legend-leads{background:var(--ui-chart)}
+html[data-formi-theme] #workspace .legend-converted{background:var(--ui-chart-green)}
+html[data-formi-theme] #workspace .chart-tabs{border-color:var(--ui-line);background:var(--ui-soft)}
+html[data-formi-theme] #workspace .chart-tabs button{background:transparent;border:0;font-size:12px;min-height:38px;border-radius:var(--ui-r-pill)}
+html[data-formi-theme] #workspace .chart-tabs button.active{background:var(--ui-surface);color:var(--ui-accent-text);box-shadow:var(--ui-shadow)}
+html[data-formi-theme] #workspace .chart-axis{fill:var(--ui-muted)}
+html[data-formi-theme] #workspace .chart-grid{stroke:var(--ui-line)}
+html[data-formi-theme] #workspace .leads-line{stroke:var(--ui-chart)}
+html[data-formi-theme] #workspace .converted-line{stroke:var(--ui-chart-green)}
+html[data-formi-theme] #workspace .chart-dot{fill:var(--ui-chart);stroke:var(--ui-surface)}
+html[data-formi-theme] #workspace #trend-area stop{stop-color:var(--ui-chart)}
+html[data-formi-theme] #workspace .chart-tooltip{background:var(--ui-raised);color:var(--ui-ink);border:1px solid var(--ui-line-strong);box-shadow:var(--ui-shadow-popover);padding:16px 20px;font-size:13px}
+html[data-formi-theme] #workspace .chart-tooltip strong{color:var(--ui-accent-text)}
+html[data-formi-theme] #workspace .chart-empty{background:var(--ui-soft);color:var(--ui-muted);border-color:var(--ui-line-strong)}
+html[data-formi-theme] #workspace :is(.trend-data,.trend-footer){border-color:var(--ui-line);color:var(--ui-muted)}
+html[data-formi-theme] #workspace .trend-footer{font-size:11px;line-height:1.7}
+html[data-formi-theme] #workspace .trend-error{background:var(--ui-danger-bg);color:var(--ui-danger);border:1px solid var(--ui-line)}
+/* Importação, notificações, personalização, ADM e proprietário. */
+html[data-formi-theme] #workspace #imports .panel>p{max-width:80ch;line-height:1.8;color:var(--ui-muted)}
+html[data-formi-theme] #workspace #import-file-form{margin-block:var(--ui-s6);padding:var(--ui-s6);border:1px dashed var(--ui-line-strong);border-radius:var(--ui-r-md);background:var(--ui-soft)}
+html[data-formi-theme] #workspace #import-preview:not(:empty){margin-block:var(--ui-s6);padding:var(--ui-s5);background:var(--ui-soft);border-radius:var(--ui-r-md)}
+html[data-formi-theme] #workspace #export-filter-form{padding:var(--ui-s5);background:var(--ui-soft);border:1px solid var(--ui-line);border-radius:var(--ui-r-md);gap:var(--ui-s5)}
+html[data-formi-theme] #workspace #imports .panel>button{margin:8px 12px 8px 0;min-height:46px}
+html[data-formi-theme] #workspace #alert-list .action-row{border-inline-start:3px solid var(--ui-accent);padding-inline:var(--ui-s5);background:var(--ui-accent-soft);border-radius:var(--ui-r-md);margin-bottom:var(--ui-s4)}
+html[data-formi-theme] #workspace #alert-list .action-row.done{border-inline-start-color:var(--ui-line-strong);background:var(--ui-soft)}
+html[data-formi-theme] #workspace #settings .two-columns>.panel{align-self:start}
+html[data-formi-theme] #workspace #settings :is(.stage-setting small,.stage-setting strong){color:var(--ui-ink)}
+html[data-formi-theme] #workspace #settings .stage-setting small{color:var(--ui-muted);font-size:12px}
+html[data-formi-theme] #workspace #settings textarea{background:var(--ui-field);min-height:135px}
+html[data-formi-theme] #workspace #template-settings .action-row p{white-space:pre-wrap;max-width:75ch;line-height:1.8}
+html[data-formi-theme] #workspace #template-form,html[data-formi-theme] #workspace #stage-form{margin-top:var(--ui-s6);padding-top:var(--ui-s6);border-top:1px solid var(--ui-line)}
+html[data-formi-theme] #workspace :is(#admin,#platform) .panel>.eyebrow{margin-bottom:var(--ui-s3)}
+html[data-formi-theme] #workspace :is(#member-list,#invite-list,#platform-companies) .action-row{align-items:center;flex-wrap:wrap}
+html[data-formi-theme] #workspace :is(#platform-feedback,#platform-audit) .history-item{padding:var(--ui-s6);background:var(--ui-soft);border-radius:var(--ui-r-md);margin-bottom:var(--ui-s4);border:1px solid var(--ui-line)}
+html[data-formi-theme] #workspace #platform-feedback .history-item strong{color:var(--ui-accent-text)}
+/* Janelas e ficha do cliente, incluindo fotos e formulários dinâmicos. */
+body.modern-workspace dialog:not(#feedback-dialog){background:var(--ui-surface);color:var(--ui-ink);border:1px solid var(--ui-line-strong);border-radius:var(--ui-r-xl);box-shadow:var(--ui-shadow-popover);padding:var(--ui-s8);color-scheme:var(--ui-scheme);scrollbar-color:var(--ui-line-strong) var(--ui-soft)}
+body.modern-workspace dialog:not(#feedback-dialog)::backdrop{background:var(--ui-backdrop);backdrop-filter:blur(6px)}
+body.modern-workspace dialog:not(#feedback-dialog) :is(h1,h2,h3,strong){color:var(--ui-ink)}
+body.modern-workspace dialog:not(#feedback-dialog) :is(.muted,small,.photo-status){color:var(--ui-muted);line-height:1.8}
+body.modern-workspace dialog:not(#feedback-dialog) .dialog-heading{gap:var(--ui-s6);padding-bottom:var(--ui-s5);border-bottom:1px solid var(--ui-line);margin-bottom:var(--ui-s6)}
+body.modern-workspace dialog:not(#feedback-dialog) .dialog-heading button{background:var(--ui-soft);color:var(--ui-muted);border:1px solid var(--ui-line);border-radius:var(--ui-r-pill);width:42px;height:42px;padding:0;display:grid;place-items:center;flex-shrink:0;min-height:42px}
+body.modern-workspace dialog:not(#feedback-dialog) :is(.panel,.history-item,.action-row){background:var(--ui-surface);border-color:var(--ui-line);color:var(--ui-ink)}
+body.modern-workspace dialog:not(#feedback-dialog) .panel{padding:var(--ui-s6);border-radius:var(--ui-r-lg);box-shadow:none}
+body.modern-workspace dialog:not(#feedback-dialog) .history-item{padding-block:var(--ui-s5)}
+body.modern-workspace dialog:not(#feedback-dialog) :is(.two-columns,.three-columns){grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ui-s6)}
+body.modern-workspace dialog:not(#feedback-dialog) :is(a,.button){color:var(--ui-accent-text);border-color:var(--ui-line);background:var(--ui-surface);text-underline-offset:3px}
+body.modern-workspace dialog:not(#feedback-dialog) .lead-actions{gap:var(--ui-s3);margin-block:var(--ui-s5);flex-wrap:wrap}
+body.modern-workspace dialog:not(#feedback-dialog) .lead-actions button{padding:11px 15px;font-size:13px}
+body.modern-workspace #photo-dialog .photo-preview{background:var(--ui-soft);border-color:var(--ui-raised);box-shadow:0 0 0 1px var(--ui-line-strong)}
+body.modern-workspace #photo-dialog .photo-preview>span{color:var(--ui-accent-text)}
+body.modern-workspace #photo-dialog .photo-dialog-actions{border-color:var(--ui-line)}
+body.modern-workspace #photo-dialog #photo-remove{color:var(--ui-danger)}
+body.modern-workspace #toast{background:var(--ui-raised);color:var(--ui-ink);border:1px solid var(--ui-line-strong);box-shadow:var(--ui-shadow-popover);border-radius:var(--ui-r-md);line-height:1.7;z-index:1000}
+body.modern-workspace #toast.ui-toast-error{background:var(--ui-danger-bg);color:var(--ui-danger);border-color:var(--ui-danger)}
+body.modern-workspace.is-loading::before{background:var(--ui-accent)}
+body.modern-workspace .ui-submit-busy{cursor:progress!important}
+/* Aparência: acesso rápido no cabeçalho e escolha no perfil. */
+html[data-formi-theme] #workspace #ui-theme-toggle{background:var(--ui-soft);color:var(--ui-accent-text);border:1px solid var(--ui-line);border-radius:var(--ui-r-pill);width:42px;height:42px;display:grid;place-items:center;padding:10px}
+html[data-formi-theme] #workspace #ui-theme-toggle svg{width:20px;height:20px}
+.ui-theme-preferences{padding-block:var(--ui-s5);margin-block:var(--ui-s4);border-block:1px solid var(--ui-line)}
+html[data-formi-theme] #workspace .ui-theme-preferences .eyebrow{font-size:10px;color:var(--ui-muted);margin-bottom:12px}
+.ui-theme-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:4px;background:var(--ui-soft);border:1px solid var(--ui-line);border-radius:var(--ui-r-md)}
+html[data-formi-theme] #workspace .ui-theme-options button{font-size:11px;min-height:40px;padding:8px 5px;border-radius:var(--ui-r-sm);border:1px solid transparent;background:transparent;box-shadow:none;margin:0;text-align:center}
+html[data-formi-theme] #workspace .ui-theme-options button[aria-pressed="true"]{background:var(--ui-raised);color:var(--ui-accent-text);border-color:var(--ui-line-strong);box-shadow:var(--ui-shadow)}
+html[data-formi-theme] #workspace #ui-theme-status{font-size:11px;margin:12px 0 0;line-height:1.7}
+/* Adaptação: conteúdo respira sem esconder ações ou modificar suas regras. */
+@media(min-width:1600px){:root{--ui-panel-pad:34px;--ui-page-gap:32px}html[data-formi-theme] #workspace .lead-meta{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1200px){html[data-formi-theme] #workspace .modern-header{gap:14px}html[data-formi-theme] #workspace .modern-tabs button{padding-inline:11px}html[data-formi-theme] #workspace .modern-user-tools{gap:12px}html[data-formi-theme] #workspace .filters{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1000px){html[data-formi-theme] #workspace .modern-tabs{display:none}html[data-formi-theme] #workspace .two-columns,html[data-formi-theme] #workspace .three-columns{grid-template-columns:1fr}html[data-formi-theme] #workspace .lead-meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+ :root{--ui-control:48px;--ui-panel-pad:22px;--ui-page-gap:24px}
+ html[data-formi-theme] #workspace>main{padding-block:26px 48px!important}
+ html[data-formi-theme] #workspace .modern-header{padding:13px 16px;gap:10px}
+ html[data-formi-theme] #workspace .modern-user-tools{gap:10px}
+ html[data-formi-theme] #workspace .modern-brand-group{gap:8px}
+ html[data-formi-theme] #workspace .modern-brand{gap:8px}
+ html[data-formi-theme] #workspace .modern-brand span{font-size:18px}
+ html[data-formi-theme] #workspace #ui-theme-toggle{width:38px;height:38px;min-height:38px;padding:9px}
+ html[data-formi-theme] #workspace .company-controls{gap:12px;flex-wrap:wrap;width:100%}
+ html[data-formi-theme] #workspace .company-controls label{min-width:150px}
+ html[data-formi-theme] #workspace .company-controls select{font-size:13px;max-width:100%}
+ html[data-formi-theme] #workspace #new-company{min-height:48px}
+ html[data-formi-theme] #workspace .modern-hero{padding:28px 24px;border-radius:var(--ui-r-lg)}
+ html[data-formi-theme] #workspace .modern-hero h2{font-size:32px}
+ html[data-formi-theme] #workspace .modern-hero p{font-size:13px;line-height:1.75}
+ html[data-formi-theme] #workspace .hero-actions{gap:12px}
+ html[data-formi-theme] #workspace .hero-actions button{font-size:12px;min-height:48px}
+ html[data-formi-theme] #workspace .metric{padding:20px 16px;min-height:145px}
+ html[data-formi-theme] #workspace .metric strong{font-size:24px}
+ html[data-formi-theme] #workspace .metric span,html[data-formi-theme] #workspace .metric small{font-size:12px}
+ html[data-formi-theme] #workspace .metrics{gap:14px}
+ html[data-formi-theme] #workspace .lead-head{gap:20px}
+ html[data-formi-theme] #workspace .lead-meta{font-size:13px;gap:20px;padding-block:22px}
+ html[data-formi-theme] #workspace .lead-meta span{font-size:11px}
+ html[data-formi-theme] #workspace .lead-actions button{flex:1 1 120px;min-height:46px;font-size:12px}
+ html[data-formi-theme] #workspace .badge{font-size:11px}
+ html[data-formi-theme] #workspace .filters{grid-template-columns:repeat(2,minmax(0,1fr));padding:18px;gap:18px}
+ html[data-formi-theme] #workspace .filters label:first-child{grid-column:1/-1}
+ html[data-formi-theme] #workspace .ui-filter-content{padding:18px}
+ .ui-filter-drawer>summary{padding:20px;gap:12px;flex-wrap:wrap}
+ .ui-filter-drawer>summary>span:first-child{flex:1 1 170px}
+ .ui-filter-count{margin-left:0;white-space:normal;max-width:100%}
+ .ui-filter-footer{align-items:stretch;flex-direction:column}
+ html[data-formi-theme] #workspace .crm-toolbar{padding:18px;gap:14px}
+ html[data-formi-theme] #workspace .crm-toolbar label{min-width:130px;flex:1 1 100%}
+ html[data-formi-theme] #workspace .inline-form label{min-width:120px}
+ html[data-formi-theme] #workspace .ui-filter-content .crm-toolbar>button{flex:1 1 120px}
+ html[data-formi-theme] #workspace :is(.action-row,.stage-setting){gap:16px}
+ html[data-formi-theme] #workspace .action-row>div{min-width:0}
+ html[data-formi-theme] #workspace .action-row button{white-space:normal}
+ html[data-formi-theme] #workspace .focus-grid{gap:12px}
+ html[data-formi-theme] #workspace .focus-grid>div{padding:8px 10px 8px 0}
+ html[data-formi-theme] #workspace .focus-grid strong{font-size:28px}
+ html[data-formi-theme] #workspace .focus-grid span{font-size:11px}
+ html[data-formi-theme] #workspace .trend-controls{padding:18px;gap:16px}
+ html[data-formi-theme] #workspace .trend-summary>div{padding:18px 14px}
+ html[data-formi-theme] #workspace .trend-summary strong{font-size:27px}
+ html[data-formi-theme] #workspace .trend-summary :is(span,small){font-size:11px}
+ html[data-formi-theme] #workspace .trend-heading p{font-size:13px}
+ html[data-formi-theme] #workspace .chart-toolbar{gap:18px}
+ html[data-formi-theme] #workspace .chart-tooltip{font-size:12px;padding:16px}
+ html[data-formi-theme] #workspace .trend-footer{font-size:10px}
+ html[data-formi-theme] #workspace .kanban-column{flex-basis:min(290px,85vw);padding:18px}
+ html[data-formi-theme] #workspace #report-period{padding:18px}
+ html[data-formi-theme] #workspace #import-file-form{padding:18px}
+ html[data-formi-theme] #workspace #export-filter-form{padding:18px}
+ html[data-formi-theme] #workspace #imports .panel>button{width:100%;margin:8px 0}
+ html[data-formi-theme] #workspace :is(#platform-audit,#platform-feedback) .history-item{padding:18px}
+ body.modern-workspace dialog:not(#feedback-dialog){padding:24px;border-radius:var(--ui-r-lg)}
+ body.modern-workspace dialog:not(#feedback-dialog) :is(.two-columns,.three-columns,.form-grid){grid-template-columns:1fr;gap:20px}
+ body.modern-workspace dialog:not(#feedback-dialog) .dialog-heading{gap:16px}
+ body.modern-workspace dialog:not(#feedback-dialog) input,body.modern-workspace dialog:not(#feedback-dialog) select,body.modern-workspace dialog:not(#feedback-dialog) textarea{font-size:16px}
+ body.modern-workspace dialog:not(#feedback-dialog) .lead-actions button{flex:1 1 125px}
+ body.modern-workspace #toast{left:16px;right:16px;bottom:16px;max-width:none;font-size:13px}
+}
+@media(max-width:360px){html[data-formi-theme] #workspace .modern-brand small{display:none}html[data-formi-theme] #workspace .modern-brand span{font-size:15px}html[data-formi-theme] #workspace .modern-user-tools{gap:5px}html[data-formi-theme] #workspace .modern-header{padding-inline:12px}html[data-formi-theme] #workspace .company-controls label{min-width:130px}html[data-formi-theme] #workspace .modern-brand img{width:30px;height:30px}}
+@media(prefers-reduced-motion:reduce){html[data-formi-theme] #workspace *,body.modern-workspace dialog:not(#feedback-dialog) *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media(forced-colors:active){html[data-formi-theme] #workspace :is(.panel,.metric,.lead-card,.badge,button){border:1px solid CanvasText}html[data-formi-theme] #workspace .chart-line{stroke:CanvasText}html[data-formi-theme] #workspace .chart-dot{fill:CanvasText}}
